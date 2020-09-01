@@ -2,19 +2,26 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bibleapp.services.mappers.VersesMapper">
-    <select id="bookById" resultMap="Book">
+<mapper namespace="com.bibleapp.services.mappers.BooksMapper">
+    <select id="allBookNames" resultMap="Book">
         select
-            id,
             b,
-            c,
-            v,
-            t
+            n
         from
-            t_kjv
-        where
-            b = #{bookId}
+            key_english
     </select>
+<!--    <select id="bookById" resultMap="Books">-->
+<!--        select-->
+<!--            id,-->
+<!--            b,-->
+<!--            c,-->
+<!--            v,-->
+<!--            t-->
+<!--        from-->
+<!--            t_kjv-->
+<!--        where-->
+<!--            b = #{bookId}-->
+<!--    </select>-->
 
     <resultMap id="Verse" type="Verse">
         <id column="id" property="id" />
@@ -31,6 +38,7 @@
 
     <resultMap id="Book" type="Book">
         <id column="b" property="id" />
+        <result column="n" property="name" />
         <collection property="chapters" resultMap="Chapter" />
     </resultMap>
 </mapper>
