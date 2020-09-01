@@ -1,27 +1,22 @@
 package com.bibleapp.services.controllers;
 
 import com.bibleapp.services.models.Book;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
 
-@RestController("book/")
+@RestController
+@RequestMapping("/books")
 public class Books extends Main {
 
-    @GetMapping("/")
-    public void test() {
-        System.out.println("Test");
-    }
-
-    @GetMapping("names")
+    @GetMapping("/names")
     public List<Book> getAllBooks() {
         return this.booksMapper.allBookNames();
     }
 
-//    @GetMapping("/{id}")
-//    public List<Books> getBooks() {
-//
-//    }
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable("id") int id) {
+        return this.booksMapper.bookById(id);
+    }
 }

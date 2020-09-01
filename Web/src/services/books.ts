@@ -7,13 +7,17 @@ export default class BooksService extends Api {
   }
 
   public async getWholeBook(bookId: number): Promise<Book> {
-    const { data } = await this.get<Book>(`book/${bookId}`)
+    const { data } = await this.get<Book>(`books/${bookId}`)
     return data
   }
 
-  async getAllBookNames(): Promise<Book[]> {
-    this.get('book')
-    const { data } = await this.get<Book[]>('book/names')
+  public async getAllBookNames(): Promise<Book[]> {
+    const { data } = await this.get<Book[]>('books/names')
+    return data
+  }
+
+  public async test(): Promise<string> {
+    const { data } = await this.get<string>('');
     return data
   }
 }

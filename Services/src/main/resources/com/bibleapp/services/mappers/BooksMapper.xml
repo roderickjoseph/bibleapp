@@ -3,42 +3,49 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bibleapp.services.mappers.BooksMapper">
-    <select id="allBookNames" resultMap="Book">
+    <select id="allBookNames" resultMap="BookBase">
         select
-            b,
-            n
+            b as book,
+            n as name
         from
             key_english
     </select>
-<!--    <select id="bookById" resultMap="Books">-->
-<!--        select-->
-<!--            id,-->
-<!--            b,-->
-<!--            c,-->
-<!--            v,-->
-<!--            t-->
-<!--        from-->
-<!--            t_kjv-->
-<!--        where-->
-<!--            b = #{bookId}-->
-<!--    </select>-->
+
+    <select id="bookById" resultMap="Book">
+        select
+            kj.id as id,
+            kj.b as book,
+            kj.c as chapter,
+            kj.v as verse,
+            kj.t as text,
+            ke.n as name
+        from
+            t_kjv kj
+        join
+            key_english ke on kj.b = ke.b
+        where
+            kj.b = #{bookId}
+    </select>
 
     <resultMap id="Verse" type="Verse">
         <id column="id" property="id" />
-        <result column="b" property="book" />
-        <result column="c" property="chapter" />
-        <result column="v" property="verse" />
-        <result column="t" property="text" />
+        <result column="book" property="book" />
+        <result column="chapter" property="chapter" />
+        <result column="verse" property="verse" />
+        <result column="text" property="text" />
     </resultMap>
 
     <resultMap id="Chapter" type="Chapter">
-        <id column="c" property="id" />
+        <id column="chapter" property="id" />
         <collection property="verses" resultMap="Verse" />
     </resultMap>
 
-    <resultMap id="Book" type="Book">
-        <id column="b" property="id" />
-        <result column="n" property="name" />
+    <resultMap id="BookBase" type="Book">
+        <id column="book" property="id" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <resultMap id="Book" type="Book" extends="BookBase">
         <collection property="chapters" resultMap="Chapter" />
     </resultMap>
 </mapper>

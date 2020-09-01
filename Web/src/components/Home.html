@@ -1,14 +1,18 @@
 <!-- <h2>Book: {{ book.id }}</h2> -->
-<ul>
-  <li v-for="book in bookNames">
-    <span :key="book.id">{{ book.name }}</span>
-  </li>
-</ul>
-<!-- <ul> -->
-<!--   <li v-for="chapter in book.chapters"> -->
-<!--     <span :key="chapter.id">{{ chapter.id }}</span> -->
-<!--     <template v-for="verse in chapter.verses" :key="verse.id"> -->
-<!--       <span>{{ verse.text }}</span> -->
-<!--     </template> -->
-<!--   </li> -->
-<!-- </ul> -->
+<!-- {{ greeting }} -->
+<div style="display: flex">
+  <ul style="width: 50%">
+    <li v-for="book in bookNames">
+      <span @click="getBook(book.id)" :key="book.id">{{ book.name }}</span>
+    </li>
+  </ul>
+  <ul style="width: 50%">
+    <h2>{{ book.name }}</h2>
+    <li v-for="chapter in book.chapters">
+      <span :key="chapter.id">{{ chapter.id }}</span>
+      <template v-for="verse in chapter.verses" :key="verse.id">
+        <span>{{ verse.text }}</span>
+      </template>
+    </li>
+  </ul>
+</div>

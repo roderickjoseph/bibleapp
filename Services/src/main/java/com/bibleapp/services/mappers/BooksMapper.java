@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface BooksMapper {
 
-//    Books bookById(int id);
+    Book bookById(int id);
     List<Book> allBookNames();
 }
