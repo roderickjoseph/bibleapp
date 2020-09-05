@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bibleapp.services.mappers.ChaptersMapper">
+
+    <select id="chapterByBookAndChanpter" resultType="com.bibleapp.services.models.Chapter">
+        select
+            id,
+            b,
+            c,
+            v,
+            t
+        from
+            t_kjv
+        where
+            b = #{bookId} and
+            c = #{chapterId}
+    </select>
+
+    <resultMap id="Verse" type="Verse">
+        <id column="id" property="id" />
+        <result column="b" property="book" />
+        <result column="c" property="chapter" />
+        <result column="v" property="verse" />
+        <result column="t" property="text" />
+    </resultMap>
+
+    <resultMap id="Chapter" type="Chapter">
+        <id column="c" property="id" />
+        <collection property="verses" resultMap="Verse" />
+    </resultMap>
+
+    <resultMap id="Book" type="Book">
+        <id column="b" property="id" />
+        <collection property="chapters" resultMap="Chapter" />
+    </resultMap>
+</mapper>

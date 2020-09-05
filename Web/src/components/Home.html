@@ -1,11 +1,17 @@
 <!-- <h2>Book: {{ book.id }}</h2> -->
 <!-- {{ greeting }} -->
 <div style="display: flex">
-  <ul style="width: 50%">
-    <li v-for="book in bookNames">
-      <span @click="getBook(book.id)" :key="book.id">{{ book.name }}</span>
-    </li>
-  </ul>
+  <label for="booksDD">Choose a book</label>
+  <select id="booksDD">
+    <template v-for="book in bookNames">
+      <option :value="book.id">{{ book.name }}</option>
+    </template>
+  </select>
+  <!-- <ul style="width: 50%"> -->
+  <!--   <li v-for="book in bookNames"> -->
+  <!--     <span @click="getBook(book.id)" :key="book.id">{{ book.name }}</span> -->
+  <!--   </li> -->
+  <!-- </ul> -->
   <ul style="width: 50%">
     <h2>{{ book.name }}</h2>
     <li v-for="chapter in book.chapters">
