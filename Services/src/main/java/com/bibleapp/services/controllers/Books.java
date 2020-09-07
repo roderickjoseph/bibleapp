@@ -4,6 +4,7 @@ import com.bibleapp.services.models.Book;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -15,8 +16,13 @@ public class Books extends Main {
         return this.booksMapper.allBookNames();
     }
 
-    @GetMapping("/{id}")
-    public Book getBookById(@PathVariable("id") int id) {
-        return this.booksMapper.bookById(id);
+    @GetMapping("/{bookId}/{chapterId}")
+    public Book getBookByAndChapterByIds(
+            @PathVariable int bookId,
+            @PathVariable int chapterId) {
+        var m = new HashMap<String, Integer>();
+        m.put("bookId", bookId);
+        m.put("chapterId", chapterId);
+        return this.booksMapper.bookByIdAndChapter(m);
     }
 }

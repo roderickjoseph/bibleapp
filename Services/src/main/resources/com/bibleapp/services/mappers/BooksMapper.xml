@@ -11,7 +11,7 @@
             key_english
     </select>
 
-    <select id="bookById" resultMap="Book">
+    <select id="bookByIdAndChapter" parameterType="java.util.Map" resultMap="Book">
         select
             kj.id as id,
             kj.b as book,
@@ -24,7 +24,8 @@
         join
             key_english ke on kj.b = ke.b
         where
-            kj.b = #{bookId}
+            kj.b = #{bookId} and
+            kj.c = #{chapterId}
     </select>
 
     <resultMap id="Verse" type="Verse">

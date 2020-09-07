@@ -11,6 +11,11 @@ export default class BooksService extends Api {
     return data
   }
 
+  public async getBook(bookId: number, chapterId: number): Promise<Book> {
+    const { data } = await this.get<Book>(`books/${bookId}/${chapterId}`)
+    return data
+  }
+
   public async getAllBookNames(): Promise<Book[]> {
     const { data } = await this.get<Book[]>('books/names')
     return data

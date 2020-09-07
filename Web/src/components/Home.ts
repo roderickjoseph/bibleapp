@@ -1,5 +1,5 @@
 import { defineComponent, onMounted } from 'vue'
-import { booksService, versesService } from '../services'
+import { booksService, chaptersService, versesService } from '../services'
 import { Book, Chapter, Verse } from '../types/verses.d'
 
 export default defineComponent({
@@ -7,9 +7,11 @@ export default defineComponent({
     return {
       bookNames: [] as Book[],
       book: {} as Book,
-      chapters: [] as Chapter[],
+      chapters: [ 0 ] as number[],
       verses: [] as Verse[],
-      greeting: ''
+      greeting: '',
+      selectedBook: 1,
+      selectedChapter: 0,
     }
   },
   async created() {
@@ -17,9 +19,20 @@ export default defineComponent({
     // this.book = await versesService.getWholeBook(2)
     this.bookNames = await booksService.getAllBookNames()
   },
+  updated() {
+    console.error(`Selected book: ${this.selectedBook}`)
+  },
   methods: {
-    async getBook(id: number) {
-      this.book = await booksService.getWholeBook(id)
+    // async getBook(id: number) {
+    //   this.selectedBook = id
+    //   this.book = await booksService.getWholeBook(this.selectedBook)
+    // },
+    async getBook() {
+      this.book = await booksService.getBook(this.selectedBook, this.selectedChapter)
+    },
+    async selectBook(id: number) {
+      this.selectedBook = id
+      this.chapters = await chaptersService.getChaptersForBook(this.selectedBook)
     },
   },
 })
