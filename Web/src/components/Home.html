@@ -1,6 +1,6 @@
-<div style="display: flex">
+<div :class="$style.container">
   <form id="bookSelect" @submit.prevent="getBook">
-    <label for="booksDD">
+    <label for="booksDD" :class="$style.red">
       Book
       <select id="booksDD" form="bookSelect" @change="selectBook($event.currentTarget.value)">
         <option value="0"></option>
