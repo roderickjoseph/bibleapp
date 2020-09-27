@@ -1,13 +1,3 @@
-<template>
-  <home />
-</template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Home from './components/Home.vue'
-
-export default defineComponent({
-  components: {
-    Home,
-  },
-})
-</script>
+<template src="./App.html"></template>
+<script src="./App.ts" lang="ts"></script>
+<style src="./App.scss" lang="scss"></style>
