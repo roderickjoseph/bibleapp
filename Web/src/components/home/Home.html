@@ -16,9 +16,11 @@
     <button type="submit">Submit</button>
   </form>
   <ul style="width: 50%">
+    {{ book }}
+    {{ book.chapters }}
     <h2>{{ book.name }}</h2>
-    <li v-for="chapter in book.chapters">
-      <span :key="chapter.id">{{ chapter.id }}</span>
+    <li v-for="chapter in book.chapters" :key="chapter.id">
+      <span>{{ chapter.id }}</span>
       <template v-for="verse in chapter.verses" :key="verse.id">
         <span>{{ verse.text }}</span>
       </template>

@@ -1,3 +1,10 @@
 <div>
+  <Suspense>
+  <template #default>
     <home />
+  </template>
+  <template #fallback>
+    <div>Loading...</div>
+  </template>
+  </Suspense>
 </div>

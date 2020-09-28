@@ -1,7 +1,7 @@
 export interface Book {
-  id: number;
-  name: string;
-  chapters: Chapter[];
+  id?: number;
+  name?: string;
+  chapters?: Chapter[];
 }
 
 export interface Chapter {

@@ -13,6 +13,7 @@ public class Books extends Main {
 
     @GetMapping("/names")
     public List<Book> getAllBooks() {
+        System.out.println("YO");
         return this.booksMapper.allBookNames();
     }
 
@@ -20,9 +21,13 @@ public class Books extends Main {
     public Book getBookByAndChapterByIds(
             @PathVariable int bookId,
             @PathVariable int chapterId) {
+        System.out.println("BOOK: " + bookId);
+        System.out.println("CHAPTER: " + chapterId);
         var m = new HashMap<String, Integer>();
         m.put("bookId", bookId);
         m.put("chapterId", chapterId);
-        return this.booksMapper.bookByIdAndChapter(m);
+        Book book = this.booksMapper.bookByIdAndChapter(m);
+        System.out.println("BOOKY: " + book.getName());
+        return book;
     }
 }

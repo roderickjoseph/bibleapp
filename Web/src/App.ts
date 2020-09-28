@@ -1,8 +1,13 @@
-import { defineComponent } from 'vue'
+import {
+  defineComponent,
+  defineAsyncComponent,
+} from 'vue'
 import Home from './components/home/Home.vue'
 
 export default defineComponent({
   components: {
-    Home,
+    Home: defineAsyncComponent(() =>
+      import('./components/home/Home.vue'),
+    )
   },
 })
