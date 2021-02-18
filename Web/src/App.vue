@@ -1,3 +1,25 @@
-<template src="./App.html"></template>
-<script src="./App.ts" lang="ts"></script>
-<style src="./App.scss" lang="scss"></style>
+<template>
+  <nav>
+    <router-link to="/">Home</router-link>
+  </nav>
+  <!-- <Suspense> -->
+    <selector />
+    <!-- <template #default> -->
+      <router-view />
+    <!-- </template> -->
+    <!-- <template #fallback> -->
+    <!--   <div>Loading...</div> -->
+    <!-- </template> -->
+  <!-- </Suspense> -->
+</template>
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Selector from './components/selector/Selector.vue'
+
+export default defineComponent({
+  name: 'app',
+  components: {
+    Selector,
+  }
+})
+</script>

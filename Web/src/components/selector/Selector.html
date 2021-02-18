@@ -1,0 +1,16 @@
+<form id="bookSelect" class="form" @submit.prevent="getBook">
+  <label for="booksDD">
+    Book
+    <select id="booksDD" form="bookSelect" @change="selectBook($event.currentTarget.value)">
+      <option value="0"></option>
+      <option v-for="book in bookNames" :value="book.id">{{ book.name }}</option>
+    </select>
+  </label>
+  <label for="chaptersDD">
+    Chapter
+    <select id="chaptersDD" form="bookSelect" v-model="selectedChapter">
+      <option v-for="chapter in chapters" :value="chapter">{{ chapter }}</option>
+    </select>
+  </label>
+  <button type="submit">Submit</button>
+</form>

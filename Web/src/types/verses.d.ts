@@ -5,7 +5,7 @@ export interface Book {
 }
 
 export interface Chapter {
-  id: number;
+  id?: number;
   verses: Verse[];
 }
 
